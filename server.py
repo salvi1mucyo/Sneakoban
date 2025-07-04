@@ -74,12 +74,20 @@ def get_levels(params):
         if fname.endswith(".json")
     )
 
+def solve(params):
+    level = params['level']
+    with open(f'puzzles/{level}', 'r') as f:
+        game = json.load(f)
+    transfromed = lab.make_new_game(game)
+    return lab.solve_puzzle(transfromed)
+
 
 funcs = {
     "new_game": new_game,
     "step_game": step_game,
     "get_levels": get_levels,
     "all_objects": lambda params: character_map,
+    'solve': solve,
 }
 
 
